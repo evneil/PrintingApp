@@ -31,7 +31,7 @@ public class AddSpoolActivity extends AppCompatActivity {
         editor.apply();
 
         Toast.makeText(this, manufacturer, Toast.LENGTH_SHORT).show();
-        finish();
+        AddSpoolActivity.this.finish();
     }
 
 
