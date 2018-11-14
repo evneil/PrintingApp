@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">PrintingApp</string>
+    <string name="manufacturer_name">Manufacturer</string>
+    <string name="add_spool">Add Spool</string>
 </resources>
