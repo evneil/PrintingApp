@@ -17,8 +17,14 @@ public interface SpoolDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     void insert(Spool spool);
 
+    @Insert
+    void insertAll(Spool... spool);
+
     @Update
     void updateSpools(Spool... spool);
+
+    @Query("SELECT * FROM spool_table where name LIKE  :spoolBrand ")
+    Spool findByName(String spoolBrand);;
 
     @Query("DELETE FROM spool_table")
     void deleteAll();
@@ -27,7 +33,7 @@ public interface SpoolDao {
     void delete(Spool spool);
 
     @Query("SELECT * from spool_table ORDER BY id ASC")
-    LiveData<List<Spool>> getAllSpools();
+    List<Spool> getAllSpools();
 
 }
 

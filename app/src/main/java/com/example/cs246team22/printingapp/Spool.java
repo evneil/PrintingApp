@@ -14,56 +14,57 @@ public class Spool {
     @ColumnInfo(name = "id")
     private int spoolID;
 
-    @ColumnInfo(name = "manufacturer")
-    private String brandName;
-    @ColumnInfo(name = "length")
-    private int spoolLength;
-    @ColumnInfo(name = "type")
-    private String spoolType;
-    @ColumnInfo(name = "weight")
-    private String spoolWeight;
+    @ColumnInfo(name = "name")
+    private String spoolName;
+
+    @ColumnInfo(name = "brand")
+    private String spoolBrand;
+
     @ColumnInfo(name = "color")
     private String spoolColor;
 
-    // constructors
+    @ColumnInfo(name = "weight")
+    private int spoolWeight;
+
+    @ColumnInfo(name = "material")
+    private String spoolMaterial;
+
+/*
+    public Spool( int spoolID, String spoolName, String spoolBrand, String spoolColor, int spoolWeight, String spoolMaterial) {
+        this.spoolID = spoolID;
+        this.spoolName = spoolName;
+        this.spoolColor = spoolColor;
+        this.spoolWeight = spoolWeight;
+        this.spoolMaterial = spoolMaterial;
+    }
+*/
 
     // properties
-    public void setSpoolID(int id) {
-        this.spoolID = spoolID;
-    }
-    public void setBrandName(String BrandName) {
-        this.brandName = brandName;
-    }
-    public void setSpoolLength(int SpoolLength) { this.spoolLength = spoolLength;}
-    public void setSpoolType(String spoolType) { this.spoolType = spoolType;}
-    public void setSpoolWeight(String spoolWeight) { this.spoolWeight = spoolWeight;}
+    public void setSpoolID(int spoolID) { this.spoolID = spoolID;}
+    public void setSpoolName(String spoolName) { this.spoolName = spoolName;}
+    public void setSpoolBrand(String spoolBrand) { this.spoolBrand = spoolBrand;}
     public void setSpoolColor( String spoolColor) {this.spoolColor = spoolColor;}
+    public void setSpoolWeight(int spoolWeight) { this.spoolWeight = spoolWeight;}
+    public void setSpoolMaterial(String spoolMaterial) { this.spoolMaterial = spoolMaterial;}
 
 
-    public int getSpoolID() {
 
-        return spoolID;
-    }
+    public int getSpoolID() { return spoolID;}
 
-    public String getBrandName() {
+    public String getSpoolName() { return spoolName;}
 
-        return brandName;
-    }
-
-    public int getSpoolLength() {
-        return spoolLength;
-    }
-
-    public String getSpoolType() {
-        return spoolType;
-    }
-
-    public String getSpoolWeight() {
-        return spoolWeight;
-    }
+    public String getSpoolBrand() { return spoolBrand;}
 
     public String getSpoolColor() {
         return spoolColor;
     }
+
+    public int getSpoolWeight() { return spoolWeight;}
+
+    public String getSpoolMaterial() { return spoolMaterial;}
+
+
+
+
 }
 

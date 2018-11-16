@@ -19,11 +19,16 @@ public abstract class SpoolRoomDatabase extends RoomDatabase {
                     // Create database here
                     INSTANCE = Room.databaseBuilder(context.getApplicationContext(),
                             SpoolRoomDatabase.class, "spool_database")
+
                             .build();
                 }
             }
         }
         return INSTANCE;
+    }
+
+    public static void destroyInstance() {
+        INSTANCE = null;
     }
 
 }
