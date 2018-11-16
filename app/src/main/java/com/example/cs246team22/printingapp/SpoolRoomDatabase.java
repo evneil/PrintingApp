@@ -12,7 +12,7 @@ public abstract class SpoolRoomDatabase extends RoomDatabase {
 
     private static volatile SpoolRoomDatabase INSTANCE;
 
-    static SpoolRoomDatabase getDatabase(final Context context) {
+    static SpoolRoomDatabase getDatabase(Context context) {
         if (INSTANCE == null) {
             synchronized (SpoolRoomDatabase.class) {
                 if (INSTANCE == null) {

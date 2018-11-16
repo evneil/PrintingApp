@@ -13,11 +13,12 @@ import java.util.List;
 @Dao
 public interface SpoolDao {
 
+
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     void insert(Spool spool);
 
     @Update
-    void updateSpools(Spool spool);
+    void updateSpools(Spool... spool);
 
     @Query("DELETE FROM spool_table")
     void deleteAll();
