@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -49,6 +50,8 @@ public class AddSpoolActivity extends AppCompatActivity {
 
         Log.d(getClass().getName(), String.format("Received intent with %s", spool.getSpoolName()));
         //Follow this template
+
+        Toast.makeText(this, "Success! " + spool.getSpoolName()+ " by " + spool.getSpoolBrand() + "added", Toast.LENGTH_SHORT).show();
 
         Intent replyIntent = new Intent();
 
