@@ -25,7 +25,7 @@
         android:layout_height="wrap_content"
         android:ems="10"
         android:inputType="textPersonName"
-        android:text="Spool Name"
+        android:text="Spool Name" 
         app:layout_constraintBottom_toTopOf="@+id/spoolBrand"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
