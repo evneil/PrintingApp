@@ -29,15 +29,15 @@ public class Spool {
     @ColumnInfo(name = "material")
     private String spoolMaterial;
 
-/*
+
     public Spool( int spoolID, String spoolName, String spoolBrand, String spoolColor, int spoolWeight, String spoolMaterial) {
-        this.spoolID = spoolID;
+        spoolID = 1;
         this.spoolName = spoolName;
         this.spoolColor = spoolColor;
         this.spoolWeight = spoolWeight;
         this.spoolMaterial = spoolMaterial;
     }
-*/
+
 
     // properties
     public void setSpoolID(int spoolID) { this.spoolID = spoolID;}

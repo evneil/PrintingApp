@@ -26,7 +26,7 @@ public class AddSpoolActivity extends AppCompatActivity {
 
     public void addSpool(View view){
 
-        Spool spool = new Spool();
+        Spool spool = new Spool(1 , "" ,"" ,"" , 0, "") ;
 
         EditText inputName = (EditText) findViewById(R.id.spoolName);
         EditText inputBrand = (EditText) findViewById(R.id.spoolBrand);

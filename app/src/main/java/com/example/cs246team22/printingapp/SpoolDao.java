@@ -33,7 +33,7 @@ public interface SpoolDao {
     void delete(Spool spool);
 
     @Query("SELECT * from spool_table ORDER BY id ASC")
-    List<Spool> getAllSpools();
+    LiveData<List<Spool>> getAllSpools();
 
 }
 
