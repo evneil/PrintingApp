@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Spinner;
@@ -46,6 +47,7 @@ public class AddSpoolActivity extends AppCompatActivity {
         spool.setSpoolMaterial(spoolMaterial);
 
 
+        Log.d(getClass().getName(), String.format("Received intent with %s", spool.getSpoolName()));
         //Follow this template
 
         Intent replyIntent = new Intent();
