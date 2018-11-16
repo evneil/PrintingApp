@@ -1,3 +1,21 @@
 <resources>
     <string name="app_name">PrintingApp</string>
+
+    // details on using spinners is found here:
+    // https://developer.android.com/guide/topics/ui/controls/spinner#java
+    <string-array name="materials_array">
+        <item>PLA</item>
+        <item>ABS</item>
+        <item>PETG</item>
+        <item>PET</item>
+        <item>HIPS</item>
+        <item>Nylon</item>
+        <item>TPU</item>
+        <item>Other Flexible</item>
+        <item>Wood Filled</item>
+        <item>Metal Filled</item>
+        <item>Other Filled</item>
+        <item>Glow in the Dark</item>
+        <item>Carbon Fiber</item>
+    </string-array>
 </resources>
