@@ -4,13 +4,11 @@ package com.example.cs246team22.printingapp;
 import android.arch.persistence.room.ColumnInfo;
 import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.PrimaryKey;
-import android.support.annotation.NonNull;
 
 @Entity(tableName = "spool_table")
 public class Spool {
     // fields
     @PrimaryKey(autoGenerate = true)
-    @NonNull
     @ColumnInfo(name = "id")
     private int spoolID;
 
@@ -29,39 +27,42 @@ public class Spool {
     @ColumnInfo(name = "material")
     private String spoolMaterial;
 
-
-    public Spool( int spoolID, String spoolName, String spoolBrand, String spoolColor, int spoolWeight, String spoolMaterial) {
+    public Spool(String spoolName, String spoolBrand, String spoolColor
+            , int spoolWeight, String spoolMaterial) {
         spoolID = 1;
         this.spoolName = spoolName;
+        this.spoolBrand = spoolBrand;
         this.spoolColor = spoolColor;
         this.spoolWeight = spoolWeight;
         this.spoolMaterial = spoolMaterial;
     }
 
-
     // properties
+
+
     public void setSpoolID(int spoolID) { this.spoolID = spoolID;}
+    /*
     public void setSpoolName(String spoolName) { this.spoolName = spoolName;}
     public void setSpoolBrand(String spoolBrand) { this.spoolBrand = spoolBrand;}
     public void setSpoolColor( String spoolColor) {this.spoolColor = spoolColor;}
     public void setSpoolWeight(int spoolWeight) { this.spoolWeight = spoolWeight;}
     public void setSpoolMaterial(String spoolMaterial) { this.spoolMaterial = spoolMaterial;}
 
+    */
 
+    public int getSpoolID() { return this.spoolID;}
 
-    public int getSpoolID() { return spoolID;}
+    public String getSpoolName() { return this.spoolName;}
 
-    public String getSpoolName() { return spoolName;}
-
-    public String getSpoolBrand() { return spoolBrand;}
+    public String getSpoolBrand() { return this.spoolBrand;}
 
     public String getSpoolColor() {
-        return spoolColor;
+        return this.spoolColor;
     }
 
-    public int getSpoolWeight() { return spoolWeight;}
+    public int getSpoolWeight() { return this.spoolWeight;}
 
-    public String getSpoolMaterial() { return spoolMaterial;}
+    public String getSpoolMaterial() { return this.spoolMaterial;}
 
 
 
