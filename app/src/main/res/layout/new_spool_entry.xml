@@ -24,56 +24,52 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
+        android:hint="Spool Name"
         android:inputType="textPersonName"
-        android:text="Spool Name"
         app:layout_constraintBottom_toTopOf="@+id/spoolBrand"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/newSpoolTitle"
-        tools:text="Name" />
+        app:layout_constraintTop_toBottomOf="@+id/newSpoolTitle" />
 
     <EditText
         android:id="@+id/spoolColor"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
+        android:hint="Spool Color"
         android:inputType="textPersonName"
-        android:text="Spool Color"
         app:layout_constraintBottom_toTopOf="@+id/spoolWeight"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/spoolBrand"
-        tools:text="Color" />
+        app:layout_constraintTop_toBottomOf="@+id/spoolBrand" />
 
     <EditText
         android:id="@+id/spoolBrand"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
+        android:hint="Brand"
         android:inputType="textPersonName"
-        android:text="Brand"
         app:layout_constraintBottom_toTopOf="@+id/spoolColor"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/spoolName"
-        tools:text="Brand" />
+        app:layout_constraintTop_toBottomOf="@+id/spoolName" />
 
     <EditText
         android:id="@+id/spoolWeight"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
+        android:hint="Weight"
         android:inputType="number"
-        android:text="Weight"
         app:layout_constraintBottom_toTopOf="@+id/spoolMaterialSpinner"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.502"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/spoolColor"
-        tools:text="Weight" />
+        app:layout_constraintTop_toBottomOf="@+id/spoolColor" />
 
     <Spinner
         android:id="@+id/spoolMaterialSpinner"

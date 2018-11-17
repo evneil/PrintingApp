@@ -13,27 +13,32 @@ import java.util.List;
 @Dao
 public interface SpoolDao {
 
-
+    //Insert a Spool
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     void insert(Spool spool);
 
-    @Insert
-    void insertAll(Spool... spool);
+    //Insert All Spools
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    void insertAll(List<Spool> spool);
 
+    //Update Spool
     @Update
     void updateSpools(Spool... spool);
 
-    @Query("SELECT * FROM spool_table where name LIKE  :spoolBrand ")
-    Spool findByName(String spoolBrand);;
+    //Get all spools from table // Can set ORDER BY *value*
+    @Query("SELECT * from spool_table ORDER BY name")
+    LiveData<List<Spool>> getAllSpools();
 
+    //Delete All Spool Data
     @Query("DELETE FROM spool_table")
     void deleteAll();
 
+    //Delete a spool
     @Delete
     void delete(Spool spool);
 
-    @Query("SELECT * from spool_table ORDER BY id ASC")
-    List<Spool> getAllSpools();
+
+
 
 }
 
