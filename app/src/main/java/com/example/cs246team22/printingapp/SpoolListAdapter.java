@@ -41,6 +41,7 @@ public class SpoolListAdapter extends RecyclerView.Adapter<SpoolListAdapter.Spoo
             //
             // THIS IS REALLY BAD CODE PRACTICE but it's okay, in this application
             // there will be not need to translate
+
             holder.spoolItemView.setText(current.getSpoolName() + " " + current.getSpoolBrand()
                     + " " + current.getSpoolColor() + " " + current.getSpoolWeight() + " " + current.getSpoolMaterial());
             //holder.spoolItemView.setText(current.getSpoolBrand());

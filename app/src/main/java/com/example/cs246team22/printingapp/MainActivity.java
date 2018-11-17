@@ -73,7 +73,7 @@ public class MainActivity extends AppCompatActivity {
 
 
         if (requestCode == NEW_SPOOL_ACTIVITY_REQUEST_CODE && resultCode == RESULT_OK) {
-            Spool spool = new Spool(tName, tBrand, tColor, tWeight, tMaterial);
+            Spool spool = new Spool(0,tName, tBrand, tColor, tWeight, tMaterial);
             mSpoolViewModel.insert(spool);
 
         } else {

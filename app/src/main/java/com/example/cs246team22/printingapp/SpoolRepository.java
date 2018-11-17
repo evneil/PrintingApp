@@ -30,6 +30,7 @@ class SpoolRepository {
         new insertAsyncTask(mSpoolDao).execute(spool);
     }
 
+
     private static class insertAsyncTask extends AsyncTask<Spool, Void, Void> {
 
         private SpoolDao mAsyncTaskDao;

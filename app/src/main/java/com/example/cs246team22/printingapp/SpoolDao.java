@@ -19,7 +19,7 @@ public interface SpoolDao {
 
     //Insert All Spools
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    void insertAll(Spool... spool);
+    void insertAll(List<Spool> spool);
 
     //Update Spool
     @Update
