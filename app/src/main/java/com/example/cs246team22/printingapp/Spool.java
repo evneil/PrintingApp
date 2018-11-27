@@ -24,11 +24,13 @@ public class Spool {
     @ColumnInfo(name = "weight")
     private int spoolWeight;
 
+
     @ColumnInfo(name = "material")
     private String spoolMaterial;
 
     public Spool(int spoolID, String spoolName, String spoolBrand, String spoolColor
             , int spoolWeight, String spoolMaterial) {
+
         this.spoolID = spoolID;
         this.spoolName = spoolName;
         this.spoolBrand = spoolBrand;

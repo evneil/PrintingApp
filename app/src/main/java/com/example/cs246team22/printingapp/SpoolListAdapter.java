@@ -33,6 +33,10 @@ public class SpoolListAdapter extends RecyclerView.Adapter<SpoolListAdapter.Spoo
         return new SpoolViewHolder(itemView);
     }
 
+    public Spool getSpoolAtPosition (int position) {
+        return mSpools.get(position);
+    }
+
     @Override
     public void onBindViewHolder(@NonNull SpoolViewHolder holder, int position) {
         if (mSpools != null) {
@@ -42,7 +46,7 @@ public class SpoolListAdapter extends RecyclerView.Adapter<SpoolListAdapter.Spoo
             // THIS IS REALLY BAD CODE PRACTICE but it's okay, in this application
             // there will be not need to translate
 
-            holder.spoolItemView.setText(current.getSpoolName() + " " + current.getSpoolBrand()
+            holder.spoolItemView.setText(current.getSpoolID() + "" + current.getSpoolName() + " " + current.getSpoolBrand()
                     + " " + current.getSpoolColor() + " " + current.getSpoolWeight() + " " + current.getSpoolMaterial());
             //holder.spoolItemView.setText(current.getSpoolBrand());
             //holder.spoolItemView.setText(current.getSpoolColor());

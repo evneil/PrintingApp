@@ -20,7 +20,8 @@ public abstract class SpoolRoomDatabase extends RoomDatabase {
                 if (INSTANCE == null) {
                     INSTANCE = Room.databaseBuilder(context.getApplicationContext(),
                             SpoolRoomDatabase.class, "spool_database")
-                            .allowMainThreadQueries()
+
+                            //.allowMainThreadQueries()
                             .fallbackToDestructiveMigration()
                             .addCallback(sRoomDatabaseCallback)
                             .build();
@@ -72,7 +73,8 @@ public abstract class SpoolRoomDatabase extends RoomDatabase {
             spool = new Spool(0,"Try" , "Wal-mart", "Blue", 500, "Nylon");
             mDao.insert(spool);
 
-            return null;
+
+                return null;
         }
 
         public static void destroyInstance() {
