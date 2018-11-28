@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "210595306892",
+    "firebase_url": "https://printingapp-8fc05.firebaseio.com",
+    "project_id": "printingapp-8fc05",
+    "storage_bucket": "printingapp-8fc05.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:210595306892:android:0f38f59c04d4b24c",
+        "android_client_info": {
+          "package_name": "com.example.cs246team22.printingapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "210595306892-9iau1mnn0pcgs6ekto8q50if7bjijlo4.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.cs246team22.printingapp",
+            "certificate_hash": "35ce235b34bd7df4868f4a78d4f9eb9da91ef9f1"
+          }
+        },
+        {
+          "client_id": "210595306892-ni7u70teqssactsdvnj1gpki2olphp8t.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCRXdW9KALPNPymYHN4_b6sKnaMtfBjoz8"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "210595306892-ni7u70teqssactsdvnj1gpki2olphp8t.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
