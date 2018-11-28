@@ -66,8 +66,24 @@ public class Spool {
 
     public String getSpoolMaterial() { return this.spoolMaterial;}
 
+    public void setSpoolName(String spoolName) {
+        this.spoolName = spoolName;
+    }
 
+    public void setSpoolBrand(String spoolBrand) {
+        this.spoolBrand = spoolBrand;
+    }
 
+    public void setSpoolColor(String spoolColor) {
+        this.spoolColor = spoolColor;
+    }
 
+    public void setSpoolWeight(int spoolWeight) {
+        this.spoolWeight = spoolWeight;
+    }
+
+    public void setSpoolMaterial(String spoolMaterial) {
+        this.spoolMaterial = spoolMaterial;
+    }
 }
 
