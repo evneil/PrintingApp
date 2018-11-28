@@ -4,6 +4,8 @@ import android.app.Application;
 import android.arch.lifecycle.LiveData;
 import android.os.AsyncTask;
 
+import com.google.firebase.firestore.FirebaseFirestore;
+
 import java.util.List;
 
 class SpoolRepository {
