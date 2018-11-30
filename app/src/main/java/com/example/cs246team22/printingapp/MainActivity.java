@@ -36,6 +36,7 @@ import java.util.Map;
 public class MainActivity extends AppCompatActivity {
 
     private SpoolViewModel mSpoolViewModel;
+    FirebaseFirestore db = FirebaseFirestore.getInstance();
 
     public static final int NEW_SPOOL_ACTIVITY_REQUEST_CODE = 1;
     public static final int PRINT_JOB_ACTIVITY_REQUEST_CODE = 2;
@@ -68,7 +69,6 @@ public class MainActivity extends AppCompatActivity {
         Log.d("test","app created");
 
         //initialize firebase and get all the spools
-        FirebaseFirestore db = FirebaseFirestore.getInstance();
         db.collection("spools")
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
@@ -120,8 +120,15 @@ public class MainActivity extends AppCompatActivity {
         int numWeightp = data.getIntExtra(PrintJobActivity.NEW_WEIGHT_PRINT, 0);
 
         if (requestCode == NEW_SPOOL_ACTIVITY_REQUEST_CODE && resultCode == RESULT_OK) {
-            Spool spool = new Spool(0,tName, tBrand, tColor, tWeight, tMaterial);
+            Spool spool = new Spool(tName, tBrand, tColor, tWeight, tMaterial);
+
+
+
             mSpoolViewModel.insert(spool);
+
+            Log.i("firebase", Integer.toString(spool.getSpoolID()));
+            db.collection("spools")
+                    .add(spool);
 
         }
         //there is a lot going on here, the database only has an insert function, I don't know how
@@ -139,7 +146,7 @@ public class MainActivity extends AppCompatActivity {
                 if (s.getSpoolID() == numID) {
                     Spool tempSpool = s;
                     tempSpool.setSpoolWeight(numWeight);
-                    mSpoolViewModel.insert(tempSpool);
+                    mSpoolViewModel.update(tempSpool);
                     Log.d("test","spool found and added, old one not deleted cuz idk how to do that");
                 }
             }
@@ -161,7 +168,7 @@ public class MainActivity extends AppCompatActivity {
                 if (s.getSpoolID() == numIDp) {
                     Spool tempSpool = s;
                     tempSpool.setSpoolWeight(s.getSpoolWeight() - numWeightp);
-                    mSpoolViewModel.insert(tempSpool);
+                    mSpoolViewModel.update(tempSpool);
                     Log.d("test","spool found and weight modified");
                 }
             }

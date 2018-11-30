@@ -28,7 +28,7 @@ public class Spool {
     @ColumnInfo(name = "material")
     private String spoolMaterial;
 
-    public Spool(int spoolID, String spoolName, String spoolBrand, String spoolColor
+    public Spool(String spoolName, String spoolBrand, String spoolColor
             , int spoolWeight, String spoolMaterial) {
 
         this.spoolID = spoolID;
@@ -42,7 +42,7 @@ public class Spool {
     // properties
 
 
-    //public void setSpoolID(int spoolID) { this.spoolID = spoolID;}
+    //
     /*
     public void setSpoolName(String spoolName) { this.spoolName = spoolName;}
     public void setSpoolBrand(String spoolBrand) { this.spoolBrand = spoolBrand;}
@@ -65,6 +65,8 @@ public class Spool {
     public int getSpoolWeight() { return this.spoolWeight;}
 
     public String getSpoolMaterial() { return this.spoolMaterial;}
+
+    public void setSpoolID(int spoolID) { this.spoolID = spoolID;}
 
     public void setSpoolName(String spoolName) {
         this.spoolName = spoolName;

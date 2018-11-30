@@ -68,9 +68,9 @@ public abstract class SpoolRoomDatabase extends RoomDatabase {
             @Override
         protected Void doInBackground(final Void... params) {
             mDao.deleteAll();
-            Spool spool = new Spool(0,"Roger" , "Amazon", "Orange", 300, "PLA");
+            Spool spool = new Spool("Roger" , "Amazon", "Orange", 300, "PLA");
             mDao.insert(spool);
-            spool = new Spool(0,"Try" , "Wal-mart", "Blue", 500, "Nylon");
+            spool = new Spool("Try" , "Wal-mart", "Blue", 500, "Nylon");
             mDao.insert(spool);
 
 
