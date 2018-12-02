@@ -124,11 +124,16 @@ public class MainActivity extends AppCompatActivity {
 
 
 
+
+
             mSpoolViewModel.insert(spool);
 
             Log.i("firebase", Integer.toString(spool.getSpoolID()));
-            db.collection("spools")
-                    .add(spool);
+
+
+
+
+
 
         }
         //there is a lot going on here, the database only has an insert function, I don't know how
@@ -148,6 +153,11 @@ public class MainActivity extends AppCompatActivity {
                     tempSpool.setSpoolWeight(numWeight);
                     mSpoolViewModel.update(tempSpool);
                     Log.d("test","spool found and added, old one not deleted cuz idk how to do that");
+
+
+                    String docID = Integer.toString(tempSpool.getSpoolID());
+                    Log.i("firebase", Integer.toString(tempSpool.getSpoolID()));
+                    db.collection("spools").document(docID).set(tempSpool);
                 }
             }
 

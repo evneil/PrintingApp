@@ -3,14 +3,22 @@ package com.example.cs246team22.printingapp;
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
+
 import java.util.List;
 
 public class SpoolListAdapter extends RecyclerView.Adapter<SpoolListAdapter.SpoolViewHolder> {
+    FirebaseFirestore db = FirebaseFirestore.getInstance();
 
     class SpoolViewHolder extends RecyclerView.ViewHolder {
         private final TextView spoolItemView;
@@ -36,7 +44,39 @@ public class SpoolListAdapter extends RecyclerView.Adapter<SpoolListAdapter.Spoo
     @Override
     public void onBindViewHolder(@NonNull SpoolViewHolder holder, int position) {
         if (mSpools != null) {
-            Spool current = mSpools.get(position);
+            final Spool current = mSpools.get(position);
+
+
+
+            /*
+
+
+            db.collection("spools")
+                    .get()
+                    .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                        @Override
+                        public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                            if (task.isSuccessful()) {
+                                for (QueryDocumentSnapshot document : task.getResult()) {
+                                    Log.d("Firebase", document.getId() + " => " + document.getData());
+                                    int tID = Integer.parseInt(document.getId());
+                                    if (tID == Integer.parseInt(document.getId())){
+                                        current.setSpoolID(Integer.parseInt(document.getId()) + 1);
+                                    }
+
+                                }
+                            } else {
+                                Log.d("Firebase", "Error getting documents: ", task.getException());
+                            }
+                        }
+                    });
+            */
+
+            //This adds whatever is in the RecView to the Cloud
+            String docID = Integer.toString(current.getSpoolID());
+            db.collection("spools").document(docID).set(current);
+
+
             //holder.spoolItemView.setText(current.getSpoolID());
             //
             // THIS IS REALLY BAD CODE PRACTICE but it's okay, in this application

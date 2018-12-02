@@ -8,7 +8,7 @@ import android.content.Context;
 import android.os.AsyncTask;
 import android.support.annotation.NonNull;
 
-@Database(entities = {Spool.class}, version = 1, exportSchema = false)
+@Database(entities = {Spool.class}, version = 1 , exportSchema = false)
 public abstract class SpoolRoomDatabase extends RoomDatabase {
 
     public abstract SpoolDao spoolDao();
@@ -68,10 +68,6 @@ public abstract class SpoolRoomDatabase extends RoomDatabase {
             @Override
         protected Void doInBackground(final Void... params) {
             mDao.deleteAll();
-            Spool spool = new Spool("Roger" , "Amazon", "Orange", 300, "PLA");
-            mDao.insert(spool);
-            spool = new Spool("Try" , "Wal-mart", "Blue", 500, "Nylon");
-            mDao.insert(spool);
 
 
                 return null;
