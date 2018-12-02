@@ -33,7 +33,7 @@ public class PrintJobActivity extends AppCompatActivity {
         reply.putExtra(NEW_WEIGHT_PRINT, numWeightp);
         setResult(RESULT_OK, reply);
 
-        Log.d("test","finidhed print thingy");
+        Log.d("test","finished print thingy");
 
         finish();
     }
