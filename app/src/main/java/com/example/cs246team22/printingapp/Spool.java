@@ -8,7 +8,7 @@ import android.arch.persistence.room.PrimaryKey;
 @Entity(tableName = "spool_table")
 public class Spool {
     // fields
-    @PrimaryKey(autoGenerate = true)
+    @PrimaryKey
     @ColumnInfo(name = "id")
     private int spoolID;
 
@@ -28,7 +28,7 @@ public class Spool {
     @ColumnInfo(name = "material")
     private String spoolMaterial;
 
-    public Spool(String spoolName, String spoolBrand, String spoolColor
+    public Spool(int spoolID, String spoolName, String spoolBrand, String spoolColor
             , int spoolWeight, String spoolMaterial) {
 
         this.spoolID = spoolID;

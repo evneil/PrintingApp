@@ -41,6 +41,7 @@ public class MainActivity extends AppCompatActivity {
     public static final int NEW_SPOOL_ACTIVITY_REQUEST_CODE = 1;
     public static final int PRINT_JOB_ACTIVITY_REQUEST_CODE = 2;
     public static final int WEIGHT_ACTIVITY_REQUEST_CODE = 3;
+    public static int SPOOL_ID = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,20 +70,7 @@ public class MainActivity extends AppCompatActivity {
         Log.d("test","app created");
 
         //initialize firebase and get all the spools
-        db.collection("spools")
-                .get()
-                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                    @Override
-                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                        if (task.isSuccessful()) {
-                            for (QueryDocumentSnapshot document : task.getResult()) {
-                                Log.d("firenut", document.getId() + " => " + document.getData());
-                            }
-                        } else {
-                            Log.w("firenut", "Error getting documents.", task.getException());
-                        }
-                    }
-                });
+        setID();
     }
 
     public void printJob(View view) {
@@ -120,15 +108,17 @@ public class MainActivity extends AppCompatActivity {
         int numWeightp = data.getIntExtra(PrintJobActivity.NEW_WEIGHT_PRINT, 0);
 
         if (requestCode == NEW_SPOOL_ACTIVITY_REQUEST_CODE && resultCode == RESULT_OK) {
-            Spool spool = new Spool(tName, tBrand, tColor, tWeight, tMaterial);
+            Spool spool = new Spool(SPOOL_ID, tName, tBrand, tColor, tWeight, tMaterial);
 
 
 
 
 
             mSpoolViewModel.insert(spool);
+            SPOOL_ID++;
 
             Log.i("firebase", Integer.toString(spool.getSpoolID()));
+
 
 
 
@@ -181,6 +171,7 @@ public class MainActivity extends AppCompatActivity {
                     mSpoolViewModel.update(tempSpool);
                     Log.d("test","spool found and weight modified");
 
+
                     String docID = Integer.toString(tempSpool.getSpoolID());
                     Log.i("firebase", Integer.toString(tempSpool.getSpoolID()));
                     db.collection("spools").document(docID).set(tempSpool);
@@ -198,6 +189,25 @@ public class MainActivity extends AppCompatActivity {
                     Toast.LENGTH_LONG).show();
         }
 
+    }
+
+    private void setID(){
+        db.collection("spools")
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()) {
+                            for (QueryDocumentSnapshot document : task.getResult()) {
+                                Log.d("firenut", document.getId() + " => " + document.getData());
+                                int tID = Integer.parseInt(document.getId());
+                                SPOOL_ID = tID +1;
+                            }
+                        } else {
+                            Log.w("firenut", "Error getting documents.", task.getException());
+                        }
+                    }
+                });
     }
 
 }
