@@ -3,9 +3,11 @@ package com.example.cs246team22.printingapp;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.Toast;
 
 public class PrintJobActivity extends AppCompatActivity {
 
@@ -24,17 +26,22 @@ public class PrintJobActivity extends AppCompatActivity {
         Intent reply = new Intent();
         EditText idp = (EditText) findViewById(R.id.spoolIDp);
         EditText newWeightp = (EditText) findViewById(R.id.weightCostp);
-        int numIDp = Integer.parseInt(idp.getText().toString());
-        int numWeightp = Integer.parseInt(newWeightp.getText().toString());
+        if(TextUtils.isEmpty(idp.getText().toString().trim()) || TextUtils.isEmpty(newWeightp.getText().toString().trim())) {
+            Toast toast = Toast.makeText(this,"Field cannot be empty",Toast.LENGTH_SHORT);
+            toast.show();}
+        else {
+            int numIDp = Integer.parseInt(idp.getText().toString());
+            int numWeightp = Integer.parseInt(newWeightp.getText().toString());
 
-        //add checks to make sure the values are there
+            //add checks to make sure the values are there
 
-        reply.putExtra(SPOOL_ID_PRINT, numIDp);
-        reply.putExtra(NEW_WEIGHT_PRINT, numWeightp);
-        setResult(RESULT_OK, reply);
+            reply.putExtra(SPOOL_ID_PRINT, numIDp);
+            reply.putExtra(NEW_WEIGHT_PRINT, numWeightp);
+            setResult(RESULT_OK, reply);
 
-        Log.d("test","finished print thingy");
+            Log.d("test", "finished print thingy");
 
-        finish();
+            finish();
+        }
     }
 }

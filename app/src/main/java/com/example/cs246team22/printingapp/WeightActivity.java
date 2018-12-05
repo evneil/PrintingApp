@@ -3,9 +3,11 @@ package com.example.cs246team22.printingapp;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.Toast;
 
 public class WeightActivity extends AppCompatActivity {
 
@@ -24,18 +26,23 @@ public class WeightActivity extends AppCompatActivity {
         Intent reply = new Intent();
         EditText id = (EditText) findViewById(R.id.spoolID);
         EditText newWeight = (EditText) findViewById(R.id.weightCost);
-        int numID = Integer.parseInt(id.getText().toString());
-        int numWeight = Integer.parseInt(newWeight.getText().toString());
+        if(TextUtils.isEmpty(id.getText().toString().trim()) || TextUtils.isEmpty(newWeight.getText().toString().trim())) {
+            Toast toast = Toast.makeText(this,"Field cannot be empty",Toast.LENGTH_SHORT);
+            toast.show();}
+        else {
+            int numID = Integer.parseInt(id.getText().toString());
+            int numWeight = Integer.parseInt(newWeight.getText().toString());
 
-        //add checks to make sure the values are there
+            //add checks to make sure the values are there
 
-        reply.putExtra(SPOOL_ID, numID);
-        reply.putExtra(NEW_WEIGHT, numWeight);
-        setResult(RESULT_OK, reply);
+            reply.putExtra(SPOOL_ID, numID);
+            reply.putExtra(NEW_WEIGHT, numWeight);
+            setResult(RESULT_OK, reply);
 
-        Log.d("test","finished collecting weight");
+            Log.d("test", "finished collecting weight");
 
-        finish();
+            finish();
+        }
     }
 
 }

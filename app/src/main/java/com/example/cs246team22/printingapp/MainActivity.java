@@ -180,6 +180,10 @@ public class MainActivity extends AppCompatActivity {
                     tempSpool.setSpoolWeight(s.getSpoolWeight() - numWeightp);
                     mSpoolViewModel.update(tempSpool);
                     Log.d("test","spool found and weight modified");
+
+                    String docID = Integer.toString(tempSpool.getSpoolID());
+                    Log.i("firebase", Integer.toString(tempSpool.getSpoolID()));
+                    db.collection("spools").document(docID).set(tempSpool);
                 }
             }
 

@@ -8,5 +8,8 @@
         android:id="@+id/textViewName"
         style="@style/spool_title"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        android:scrollbars="none"
+        android:textColor="@android:color/black"
+        android:textSize="18sp" />
 </LinearLayout>
