@@ -18,6 +18,7 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -27,16 +28,21 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
+import org.json.JSONObject;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 public class MainActivity extends AppCompatActivity {
 
     private SpoolViewModel mSpoolViewModel;
     FirebaseFirestore db = FirebaseFirestore.getInstance();
+
+    public static String TAG = "MainActivity";
 
     public static final int NEW_SPOOL_ACTIVITY_REQUEST_CODE = 1;
     public static final int PRINT_JOB_ACTIVITY_REQUEST_CODE = 2;
@@ -71,6 +77,7 @@ public class MainActivity extends AppCompatActivity {
 
         //initialize firebase and get all the spools
         setID();
+        syncCloud();
     }
 
     public void printJob(View view) {
@@ -208,6 +215,44 @@ public class MainActivity extends AppCompatActivity {
                         }
                     }
                 });
+
+
     }
 
+
+    private void syncCloud(){
+
+
+        db.collection("spools")
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()) {
+                            for (QueryDocumentSnapshot document : task.getResult()) {
+                                Log.d("firenut", document.getId() + " => " + document.getData());
+
+                                 int tID = Integer.parseInt(document.getId());
+                                //int tID = Math.toIntExact(i);
+                                String tName = document.getString("spoolName");
+                                String tBrand = document.getString("spoolBrand");
+                                String tColor = document.getString("spoolColor");
+                                long w = document.getLong("spoolWeight");
+                                //Log.d(TAG, "onComplete: =" + w);
+                                int tWeight = Math.toIntExact(w);
+                                String tMaterial = document.getString("spoolMaterial");
+
+
+                                Spool spool = new Spool(tID, tName, tBrand, tColor, tWeight, tMaterial);
+                                mSpoolViewModel.insert(spool);
+
+
+                            }
+                        } else {
+                            Log.w("firenut", "Error getting documents.", task.getException());
+                        }
+                    }
+                });
+
+    }
 }
