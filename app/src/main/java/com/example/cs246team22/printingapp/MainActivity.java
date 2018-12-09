@@ -206,12 +206,12 @@ public class MainActivity extends AppCompatActivity {
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
                         if (task.isSuccessful()) {
                             for (QueryDocumentSnapshot document : task.getResult()) {
-                                Log.d("firenut", document.getId() + " => " + document.getData());
+                                Log.d(TAG, document.getId() + " => " + document.getData());
                                 int tID = Integer.parseInt(document.getId());
                                 SPOOL_ID = tID +1;
                             }
                         } else {
-                            Log.w("firenut", "Error getting documents.", task.getException());
+                            Log.w(TAG, "Error getting documents.", task.getException());
                         }
                     }
                 });
@@ -230,7 +230,7 @@ public class MainActivity extends AppCompatActivity {
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
                         if (task.isSuccessful()) {
                             for (QueryDocumentSnapshot document : task.getResult()) {
-                                Log.d("firenut", document.getId() + " => " + document.getData());
+                                Log.d(TAG, document.getId() + " => " + document.getData());
 
                                  int tID = Integer.parseInt(document.getId());
                                 //int tID = Math.toIntExact(i);
@@ -249,7 +249,7 @@ public class MainActivity extends AppCompatActivity {
 
                             }
                         } else {
-                            Log.w("firenut", "Error getting documents.", task.getException());
+                            Log.w(TAG, "Error getting documents.", task.getException());
                         }
                     }
                 });
