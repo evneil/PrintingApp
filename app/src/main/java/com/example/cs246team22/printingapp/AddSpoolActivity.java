@@ -86,6 +86,7 @@ public class AddSpoolActivity extends AppCompatActivity {
             finish();
 
 
+
         /*
         Spool spool = new Spool() ;
 
@@ -120,5 +121,13 @@ public class AddSpoolActivity extends AppCompatActivity {
 
 
         //finish();
+    }
+
+    // Overrides the Android back button to ensure it goes back to the main activity when pressed
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(intent);
     }
 }
