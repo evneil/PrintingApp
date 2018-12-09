@@ -239,7 +239,7 @@ public class MainActivity extends AppCompatActivity {
                                 String tColor = document.getString("spoolColor");
                                 long w = document.getLong("spoolWeight");
                                 //Log.d(TAG, "onComplete: =" + w);
-                                int tWeight = Math.toIntExact(w);
+                                int tWeight = (int)w;
                                 String tMaterial = document.getString("spoolMaterial");
 
 
