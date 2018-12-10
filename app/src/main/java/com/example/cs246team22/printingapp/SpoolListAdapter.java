@@ -79,6 +79,10 @@ public class SpoolListAdapter extends RecyclerView.Adapter<SpoolListAdapter.Spoo
             holder.spoolColorView.setText("Color: " + current.getSpoolColor());
             holder.spoolWeightView.setText("Weight: " + current.getSpoolWeight() + " g");
             holder.spoolMaterialView.setText("Material: " + current.getSpoolMaterial());
+
+            //This is the old view if you want to use it
+            //holder.spoolIDView.setText("ID: " + current.getSpoolID() + " | Name: " + current.getSpoolName() + " | Brand: " + current.getSpoolBrand()
+            //+ " | Color: " + current.getSpoolColor() + " | Weight: " + current.getSpoolWeight() + " grams | Material: " + current.getSpoolMaterial());
             if(position %2 == 1)
             {
                 holder.itemView.setBackgroundColor(Color.DKGRAY);
