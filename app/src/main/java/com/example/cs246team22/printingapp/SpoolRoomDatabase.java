@@ -11,6 +11,8 @@ import android.support.annotation.NonNull;
 @Database(entities = {Spool.class}, version = 1, exportSchema = false)
 public abstract class SpoolRoomDatabase extends RoomDatabase {
 
+    public static void destroyInstance() {INSTANCE = null; }
+
     public abstract SpoolDao spoolDao();
     private static volatile SpoolRoomDatabase INSTANCE;
 
@@ -30,6 +32,8 @@ public abstract class SpoolRoomDatabase extends RoomDatabase {
         }
         return INSTANCE;
     }
+
+
 
     /**
      * Override the onOpen method to populate the database.
@@ -64,17 +68,12 @@ public abstract class SpoolRoomDatabase extends RoomDatabase {
         }
 
 
-
-            @Override
+        @Override
         protected Void doInBackground(final Void... params) {
             mDao.deleteAll();
 
 
-                return null;
-        }
-
-        public static void destroyInstance() {
-            INSTANCE = null;
+            return null;
         }
 
     }

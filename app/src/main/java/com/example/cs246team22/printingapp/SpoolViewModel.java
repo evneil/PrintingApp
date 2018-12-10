@@ -27,6 +27,7 @@ public class SpoolViewModel extends AndroidViewModel {
         mRepository.insert(spool);
     }
     void update(Spool spool) { mRepository.update(spool); }
+    public void deleteSpool(Spool spool) {mRepository.deleteSpool(spool);}
 
 
 }

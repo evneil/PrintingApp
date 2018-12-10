@@ -35,7 +35,7 @@ public interface SpoolDao {
 
     //Delete a spool
     @Delete
-    void delete(Spool spool);
+    void deleteSpool(Spool spool);
 
 
 

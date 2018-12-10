@@ -32,6 +32,7 @@ class SpoolRepository {
         new insertAsyncTask(mSpoolDao).execute(spool);
     }
     void update(Spool... spool) { new updateAsyncTask(mSpoolDao).execute(spool);}
+    void deleteSpool(Spool spool) { new deleteSpoolAsyncTask(mSpoolDao).execute(spool);}
 
 
     private static class insertAsyncTask extends AsyncTask<Spool, Void, Void> {
@@ -63,4 +64,19 @@ class SpoolRepository {
             return null;
         }
     }
+
+    private static class deleteSpoolAsyncTask extends AsyncTask<Spool, Void, Void> {
+        private SpoolDao mAsyncTaskDao;
+
+        deleteSpoolAsyncTask(SpoolDao dao) {
+            mAsyncTaskDao = dao;
+        }
+
+        @Override
+        protected Void doInBackground(final Spool... params) {
+            mAsyncTaskDao.deleteSpool(params[0]);
+            return null;
+        }
+    }
 }
+

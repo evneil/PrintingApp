@@ -11,6 +11,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.helper.ItemTouchHelper;
 import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -73,11 +74,61 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
+        // Add the functionality to swipe items in the
+        // recycler view to delete that item
+
+        //This I intend to remove and just use the delete button located in the listadapter
+        ItemTouchHelper helper = new ItemTouchHelper(
+                new ItemTouchHelper.SimpleCallback(0,
+                        ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT) {
+                    @Override
+                    public boolean onMove(RecyclerView recyclerView,
+                                          RecyclerView.ViewHolder viewHolder,
+                                          RecyclerView.ViewHolder target) {
+                        return false;
+                    }
+
+                    @Override
+                    public void onSwiped(RecyclerView.ViewHolder viewHolder,
+                                         int direction) {
+                        int position = viewHolder.getAdapterPosition();
+                        Spool mySpool = adapter.getSpoolAtPosition(position);
+                        Toast.makeText(MainActivity.this, "Deleting spool with ID " +
+                                mySpool.getSpoolID(), Toast.LENGTH_LONG).show();
+                        String cID = Integer.toString(mySpool.getSpoolID());
+                        db.collection("spools").document(cID)
+                                .delete()
+                                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                    @Override
+                                    public void onSuccess(Void aVoid) {
+                                        Log.d(TAG, "DocumentSnapshot successfully deleted!");
+                                    }
+                                })
+                                .addOnFailureListener(new OnFailureListener() {
+                                    @Override
+                                    public void onFailure(@NonNull Exception e) {
+                                        Log.w(TAG, "Error deleting document", e);
+                                    }
+                                });
+
+                        // Delete the word
+                        mSpoolViewModel.deleteSpool(mySpool);
+                    }
+                });
+        helper.attachToRecyclerView(recyclerView);
+
+
         Log.d("test","app created");
 
         //initialize firebase and get all the spools
         setID();
         syncCloud();
+    }
+
+    @Override
+    protected void onDestroy() {
+        SpoolRoomDatabase.destroyInstance();
+        super.onDestroy();
     }
 
     public void printJob(View view) {
@@ -97,7 +148,6 @@ public class MainActivity extends AppCompatActivity {
 
         Intent AddSpoolActivityIntent = new Intent(this, AddSpoolActivity.class);
         startActivityForResult(AddSpoolActivityIntent, NEW_SPOOL_ACTIVITY_REQUEST_CODE);
-
     }
 
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
