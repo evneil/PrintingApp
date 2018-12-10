@@ -5,24 +5,61 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="horizontal">
+    android:orientation="vertical">
 
     <TextView
-        android:id="@+id/textViewName"
+        android:id="@+id/textViewID"
         style="@style/spool_title"
-        android:layout_width="329dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="30dp"
         android:scrollbars="none"
         android:textColor="@android:color/black"
         android:textSize="14sp" />
 
-    <ImageButton
-        android:id="@+id/ib_remove"
+    <TextView
+        android:id="@+id/textViewName"
+        style="@style/spool_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@android:color/transparent"
-        android:padding="0dp"
-        android:src="@drawable/ic_icon_delete" />
+        android:scrollbars="none"
+        android:textColor="@android:color/black"
+        android:textSize="14sp" />
 
+    <TextView
+        android:id="@+id/textViewBrand"
+        style="@style/spool_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:scrollbars="none"
+        android:textColor="@android:color/black"
+        android:textSize="14sp" />
+
+    <TextView
+        android:id="@+id/textViewColor"
+        style="@style/spool_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:scrollbars="none"
+        android:textColor="@android:color/black"
+        android:textSize="14sp" />
+
+    <TextView
+        android:id="@+id/textViewWeight"
+        style="@style/spool_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:scrollbars="none"
+        android:textColor="@android:color/black"
+        android:textSize="14sp" />
+
+    <TextView
+        android:id="@+id/textViewMaterial"
+        style="@style/spool_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="fill_horizontal"
+        android:longClickable="false"
+        android:scrollbars="none"
+        android:textColor="@android:color/black"
+        android:textSize="14sp" />
 </LinearLayout>

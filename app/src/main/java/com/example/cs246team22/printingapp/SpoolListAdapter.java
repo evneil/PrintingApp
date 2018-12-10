@@ -4,6 +4,7 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.res.Resources;
+import android.graphics.Color;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -30,13 +31,23 @@ public class SpoolListAdapter extends RecyclerView.Adapter<SpoolListAdapter.Spoo
     public static String TAG = "SpoolListAdapter";
 
      static class SpoolViewHolder extends RecyclerView.ViewHolder {
-        private final TextView spoolItemView;
-        private ImageButton mRemoveButton;
+
+         private final TextView spoolIDView;
+         private final TextView spoolNameView;
+         private final TextView spoolBrandView;
+         private final TextView spoolColorView;
+         private final TextView spoolWeightView;
+         private final TextView spoolMaterialView;
+         private ImageButton mRemoveButton;
 
         private SpoolViewHolder(View itemView) {
             super(itemView);
-            spoolItemView = itemView.findViewById(R.id.textViewName);
-            mRemoveButton = (ImageButton) itemView.findViewById(R.id.ib_remove);
+            spoolIDView = itemView.findViewById(R.id.textViewID);
+            spoolNameView = itemView.findViewById(R.id.textViewName);
+            spoolBrandView = itemView.findViewById(R.id.textViewBrand);
+            spoolColorView = itemView.findViewById(R.id.textViewColor);
+            spoolWeightView = itemView.findViewById(R.id.textViewWeight);
+            spoolMaterialView = itemView.findViewById(R.id.textViewMaterial);
 
         }
     }
@@ -62,55 +73,27 @@ public class SpoolListAdapter extends RecyclerView.Adapter<SpoolListAdapter.Spoo
             String docID = Integer.toString(current.getSpoolID());
             db.collection("spools").document(docID).set(current);
 
-
-            //holder.spoolItemView.setText(current.getSpoolID());
-            //
-            // THIS IS REALLY BAD CODE PRACTICE but it's okay, in this application
-            // there will be not need to translate
-
-            holder.spoolItemView.setText("ID: " + current.getSpoolID() + " | Name: " + current.getSpoolName() + " | Brand: " + current.getSpoolBrand()
-                    + " | Color: " + current.getSpoolColor() + " | Weight: " + current.getSpoolWeight() + "grams | Material: " + current.getSpoolMaterial());
-            //holder.spoolItemView.setText(current.getSpoolBrand());
-            //holder.spoolItemView.setText(current.getSpoolColor());
-            //holder.spoolItemView.setText(current.getSpoolWeight());
-            //holder.spoolItemView.setText(current.getSpoolMaterial());
-        } else {
-            // Covers the case of data not being ready yet.
-            holder.spoolItemView.setText("No Spool");
-        }
-
-        holder.mRemoveButton.setOnClickListener(new View.OnClickListener() {
-            SpoolViewModel mSpoolViewModel;
-            @Override
-            public void onClick(View view) {
-                Spool current = mSpools.get(position);
-                String cID = Integer.toString(current.getSpoolID());
-
-                // Remove the item on remove/button click
-                mSpools.remove(position);
-                notifyItemRemoved(position);
-                notifyItemRangeChanged(position, mSpools.size());
-
-
-
-                //Delete From Cloud too
-                db.collection("spools").document(cID)
-                        .delete()
-                        .addOnSuccessListener(new OnSuccessListener<Void>() {
-                            @Override
-                            public void onSuccess(Void aVoid) {
-                                Log.d(TAG, "DocumentSnapshot successfully deleted!");
-                            }
-                        })
-                        .addOnFailureListener(new OnFailureListener() {
-                            @Override
-                            public void onFailure(@NonNull Exception e) {
-                                Log.w(TAG, "Error deleting document", e);
-                            }
-                        });
+            holder.spoolIDView.setText("ID: " + current.getSpoolID());
+            holder.spoolNameView.setText("Name: " + current.getSpoolName());
+            holder.spoolBrandView.setText("Brand: " + current.getSpoolBrand());
+            holder.spoolColorView.setText("Color: " + current.getSpoolColor());
+            holder.spoolWeightView.setText("Weight: " + current.getSpoolWeight() + " g");
+            holder.spoolMaterialView.setText("Material: " + current.getSpoolMaterial());
+            if(position %2 == 1)
+            {
+                holder.itemView.setBackgroundColor(Color.DKGRAY);
+            }
+    else
+            {
+                holder.itemView.setBackgroundColor(Color.GRAY);
+                //holder.itemView.setBackgroundColor(Color.parseColor("#FFFFFF"));
 
             }
-        });
+        } else {
+            // Covers the case of data not being ready yet.
+            holder.spoolIDView.setText("No Spool");
+        }
+
     }
 
 

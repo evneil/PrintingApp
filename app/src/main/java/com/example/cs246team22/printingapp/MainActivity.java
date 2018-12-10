@@ -1,9 +1,11 @@
 package com.example.cs246team22.printingapp;
 
+import android.app.AlertDialog;
 import android.arch.lifecycle.LiveData;
 import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
-import android.arch.persistence.room.Room;
+
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -14,9 +16,7 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.helper.ItemTouchHelper;
 import android.util.Log;
 import android.view.View;
-import android.widget.ArrayAdapter;
-import android.widget.Button;
-import android.widget.ListView;
+
 import android.widget.Toast;
 
 
@@ -24,19 +24,13 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
-import com.google.firebase.firestore.DocumentReference;
+
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
-import org.json.JSONObject;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-import java.util.Set;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -68,29 +62,38 @@ public class MainActivity extends AppCompatActivity {
         mSpoolViewModel.getAllSpools().observe(this, new Observer<List<Spool>>() {
             @Override
             public void onChanged(@Nullable final List<Spool> spools) {
-                // Update the cached copy of the words in the adapter.
+                // Update the cached copy of the spools in the adapter.
                 adapter.setSpools(spools);
             }
+
         });
+
+
+
 
 
         // Add the functionality to swipe items in the
         // recycler view to delete that item
-
         //This I intend to remove and just use the delete button located in the listadapter
+
+
         ItemTouchHelper helper = new ItemTouchHelper(
                 new ItemTouchHelper.SimpleCallback(0,
                         ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT) {
+
+
                     @Override
-                    public boolean onMove(RecyclerView recyclerView,
-                                          RecyclerView.ViewHolder viewHolder,
-                                          RecyclerView.ViewHolder target) {
+                    public boolean onMove(@NonNull RecyclerView recyclerView,
+                                          @NonNull RecyclerView.ViewHolder viewHolder,
+                                          @NonNull RecyclerView.ViewHolder target) {
                         return false;
                     }
 
                     @Override
-                    public void onSwiped(RecyclerView.ViewHolder viewHolder,
+                    public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder,
                                          int direction) {
+
+
                         int position = viewHolder.getAdapterPosition();
                         Spool mySpool = adapter.getSpoolAtPosition(position);
                         Toast.makeText(MainActivity.this, "Deleting spool with ID " +
@@ -111,8 +114,9 @@ public class MainActivity extends AppCompatActivity {
                                     }
                                 });
 
-                        // Delete the word
+                        // Delete the spool
                         mSpoolViewModel.deleteSpool(mySpool);
+                        setID();
                     }
                 });
         helper.attachToRecyclerView(recyclerView);
