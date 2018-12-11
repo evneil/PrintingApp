@@ -1,11 +1,11 @@
 package com.example.cs246team22.printingapp;
 
-import android.app.AlertDialog;
+
 import android.arch.lifecycle.LiveData;
 import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
 
-import android.content.DialogInterface;
+
 import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -171,29 +171,11 @@ public class MainActivity extends AppCompatActivity {
         if (requestCode == NEW_SPOOL_ACTIVITY_REQUEST_CODE && resultCode == RESULT_OK) {
             Spool spool = new Spool(SPOOL_ID, tName, tBrand, tColor, tWeight, tMaterial);
 
-
-
-
-
             mSpoolViewModel.insert(spool);
             SPOOL_ID++;
-
             Log.i("firebase", Integer.toString(spool.getSpoolID()));
-
-
-
-
-
-
-
         }
-        //there is a lot going on here, the database only has an insert function, I don't know how
-        //to write an update function. There's also not a working delete function.
-        //when I say not working I mean not implemented fully
 
-        //ok so it turns out that finding the spool and then just changing the weight and then inesrting
-        //it is the same as updating it... so it works but idk if this is the way you're supposed
-        //to do it
         else if (requestCode == WEIGHT_ACTIVITY_REQUEST_CODE) {
             LiveData<List<Spool>> spoolData = mSpoolViewModel.getAllSpools();
             List<Spool> spools = spoolData.getValue();
@@ -205,7 +187,7 @@ public class MainActivity extends AppCompatActivity {
                     mSpoolViewModel.update(tempSpool);
                     Log.d("test","spool found and added, old one not deleted cuz idk how to do that");
 
-
+                    //Update FireStore
                     String docID = Integer.toString(tempSpool.getSpoolID());
                     Log.i("firebase", Integer.toString(tempSpool.getSpoolID()));
                     db.collection("spools").document(docID).set(tempSpool);
@@ -232,7 +214,7 @@ public class MainActivity extends AppCompatActivity {
                     mSpoolViewModel.update(tempSpool);
                     Log.d("test","spool found and weight modified");
 
-
+                    //Update FireStore
                     String docID = Integer.toString(tempSpool.getSpoolID());
                     Log.i("firebase", Integer.toString(tempSpool.getSpoolID()));
                     db.collection("spools").document(docID).set(tempSpool);
@@ -240,7 +222,6 @@ public class MainActivity extends AppCompatActivity {
             }
 
             Log.d("test","print job -> " + spoolData);
-
 
         }
         else {
