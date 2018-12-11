@@ -1,29 +1,62 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical">
+    android:orientation="horizontal">
 
-    <TextView
-        android:id="@+id/textViewID"
-        style="@style/spool_title"
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:scrollbars="none"
-        android:textColor="@android:color/black"
-        android:textSize="14sp" />
+        android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/textViewName"
-        style="@style/spool_title"
+        <TextView
+            android:id="@+id/textViewID"
+            style="@style/spool_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:scrollbars="none"
+            android:textColor="@android:color/black"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/textViewWeight"
+            style="@style/spool_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:scrollbars="none"
+            android:textColor="@android:color/black"
+            android:textSize="14sp" />
+    </LinearLayout>
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:scrollbars="none"
-        android:textColor="@android:color/black"
-        android:textSize="14sp" />
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/textViewName"
+            style="@style/spool_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:scrollbars="none"
+            android:textColor="@android:color/black"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/textViewMaterial"
+            style="@style/spool_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:scrollbars="none"
+            android:textColor="@android:color/black"
+            android:textSize="14sp" />
+    </LinearLayout>
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
 
     <TextView
         android:id="@+id/textViewBrand"
@@ -42,24 +75,11 @@
         android:scrollbars="none"
         android:textColor="@android:color/black"
         android:textSize="14sp" />
+    </LinearLayout>
 
-    <TextView
-        android:id="@+id/textViewWeight"
-        style="@style/spool_title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:scrollbars="none"
-        android:textColor="@android:color/black"
-        android:textSize="14sp" />
 
-    <TextView
-        android:id="@+id/textViewMaterial"
-        style="@style/spool_title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="fill_horizontal"
-        android:longClickable="false"
-        android:scrollbars="none"
-        android:textColor="@android:color/black"
-        android:textSize="14sp" />
+
+
+
+
 </LinearLayout>

@@ -5,6 +5,9 @@ import android.arch.persistence.room.ColumnInfo;
 import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.PrimaryKey;
 
+import java.security.Timestamp;
+import java.util.Date;
+
 @Entity(tableName = "spool_table")
 public class Spool {
     // fields
@@ -27,6 +30,7 @@ public class Spool {
 
     @ColumnInfo(name = "material")
     private String spoolMaterial;
+
 
     public Spool(int spoolID, String spoolName, String spoolBrand, String spoolColor
             , int spoolWeight, String spoolMaterial) {
@@ -66,6 +70,7 @@ public class Spool {
 
     public String getSpoolMaterial() { return this.spoolMaterial;}
 
+
     public void setSpoolID(int spoolID) { this.spoolID = spoolID;}
 
     public void setSpoolName(String spoolName) {
@@ -87,5 +92,7 @@ public class Spool {
     public void setSpoolMaterial(String spoolMaterial) {
         this.spoolMaterial = spoolMaterial;
     }
+
+
 }
 

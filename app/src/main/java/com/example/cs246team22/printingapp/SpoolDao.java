@@ -26,7 +26,7 @@ public interface SpoolDao {
     void updateSpools(Spool... spool);
 
     //Get all spools from table // Can set ORDER BY *value*
-    @Query("SELECT * from spool_table ORDER BY name")
+    @Query("SELECT * from spool_table ORDER BY id")
     LiveData<List<Spool>> getAllSpools();
 
     //Delete All Spool Data
