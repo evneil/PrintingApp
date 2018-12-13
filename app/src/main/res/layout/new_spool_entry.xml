@@ -10,21 +10,23 @@
     <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-    <TextView
-        android:id="@+id/newSpoolTitle"
-        android:layout_width="wrap_content"
-        android:layout_height="43dp"
-        android:layout_marginTop="16dp"
-        android:gravity="center_horizontal"
-        android:text="Please enter the details for the new spool of filament below:"
-        android:textColor="@color/colorPrimaryDark"
-        android:textSize="18sp"
-        app:layout_constraintBottom_toTopOf="@+id/spoolName"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_chainStyle="spread_inside" />
+
+        <TextView
+            android:id="@+id/newSpoolTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="43dp"
+            android:layout_marginTop="16dp"
+            android:gravity="center_horizontal"
+            android:text="Please enter the details for the new spool of filament below:"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@+id/spoolName"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_chainStyle="spread_inside" />
 
     <EditText
         android:id="@+id/spoolName"
@@ -65,18 +67,18 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/spoolName" />
 
-    <EditText
-        android:id="@+id/spoolWeight"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="Weight"
-        android:inputType="number"
-        app:layout_constraintBottom_toTopOf="@+id/spoolMaterialSpinner"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.502"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/spoolColor" />
+        <EditText
+            android:id="@+id/spoolWeight"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="Weight"
+            android:inputType="number"
+            app:layout_constraintBottom_toTopOf="@+id/spoolMaterialSpinner"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.502"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/spoolColor" />
 
     <Spinner
         android:id="@+id/spoolMaterialSpinner"
@@ -88,20 +90,23 @@
         app:layout_constraintBottom_toTopOf="@+id/buttonAddSpool"
         app:layout_constraintEnd_toEndOf="parent" />
 
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="79dp"
-        android:layout_height="33dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="8dp"
-        android:text="Material:"
-        android:textAlignment="viewStart"
-        android:textSize="18sp"
-        app:layout_constraintBottom_toTopOf="@+id/buttonAddSpool"
-        app:layout_constraintEnd_toStartOf="@+id/spoolMaterialSpinner"
-        app:layout_constraintHorizontal_bias="0.836"
-        app:layout_constraintStart_toStartOf="parent" />
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="79dp"
+            android:layout_height="33dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="8dp"
+            android:text="Material:"
+            android:textAlignment="viewStart"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toTopOf="@+id/buttonAddSpool"
+            app:layout_constraintEnd_toStartOf="@+id/spoolMaterialSpinner"
+            app:layout_constraintHorizontal_bias="0.827"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/spoolWeight"
+            app:layout_constraintVertical_bias="1.0" />
 
     <Button
         android:id="@+id/buttonAddSpool"
@@ -125,6 +130,7 @@
             android:text="g"
             android:textColor="@color/colorPrimaryDark"
             android:textSize="18sp"
+            android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toEndOf="@+id/spoolWeight"

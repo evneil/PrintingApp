@@ -24,8 +24,8 @@ public class WeightActivity extends AppCompatActivity {
     public void onConfirm(View view) {
 
         Intent reply = new Intent();
-        EditText id = (EditText) findViewById(R.id.spoolID);
-        EditText newWeight = (EditText) findViewById(R.id.weightCost);
+        EditText id = (EditText) findViewById(R.id.weightCost);
+        EditText newWeight = (EditText) findViewById(R.id.spoolID);
         if(TextUtils.isEmpty(id.getText().toString().trim()) || TextUtils.isEmpty(newWeight.getText().toString().trim())) {
             Toast toast = Toast.makeText(this,"Field cannot be empty",Toast.LENGTH_SHORT);
             toast.show();}

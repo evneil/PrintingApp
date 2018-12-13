@@ -14,10 +14,10 @@
         android:ems="10"
         android:hint="Enter spool ID"
         android:inputType="textPersonName"
-        app:layout_constraintEnd_toEndOf="@+id/enterButton"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="@+id/enterButton"
-        app:layout_constraintTop_toBottomOf="@+id/weightCost" />
+        app:layout_constraintEnd_toEndOf="@+id/weightCost"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/weightCost"
+        app:layout_constraintTop_toBottomOf="@+id/textView4" />
 
     <EditText
         android:id="@+id/weightCost"
@@ -27,12 +27,12 @@
         android:ems="10"
         android:hint="Enter new weight"
         android:inputType="textPersonName"
-        app:layout_constraintEnd_toEndOf="@+id/spoolID"
+        app:layout_constraintEnd_toEndOf="@+id/enterButton"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="@+id/spoolID"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintStart_toStartOf="@+id/enterButton"
+        app:layout_constraintTop_toBottomOf="@+id/spoolID" />
 
-    <Button
+     <Button
         android:id="@+id/enterButton"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -44,5 +44,21 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/spoolID" />
+        app:layout_constraintTop_toBottomOf="@+id/weightCost" />
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:text="Please enter the spool ID for the spool you wish to change and the new weight of the spool:"
+        android:textAlignment="center"
+        android:textColor="@color/colorPrimaryDark"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 </android.support.constraint.ConstraintLayout>
