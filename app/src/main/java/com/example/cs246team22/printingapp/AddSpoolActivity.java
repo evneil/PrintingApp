@@ -15,14 +15,36 @@ import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-
+/** Class that handles adding a new spool
+ * @author Edward Neil
+ * @version 1.0
+ * @since 1.0
+ */
 public class AddSpoolActivity extends AppCompatActivity {
 
+    /** Represents a static string that is a key for value 'spoolName'
+     */
     public static final String REPLY_NAME = "com.example.cs246team22.printingapp.NAME";
+
+    /** Represents a static string that is a key for value 'spoolBrand'
+     */
     public static final String REPLY_BRAND = "com.example.cs246team22.printingapp.BRAND";
+
+    /** Represents a static string that is a key for value 'spoolColor'
+     */
     public static final String REPLY_COLOR = "com.example.cs246team22.printingapp.COLOR";
+
+    /** Represents a static string that is a key for value 'spoolWeight'
+     */
     public static final String REPLY_WEIGHT = "com.example.cs246team22.printingapp.WEIGHT";
+
+    /** Represents a static string that is a key for value 'spoolMaterial'
+     */
     public static final String REPLY_MATERIAL = "com.example.cs246team22.printingapp.MATERIAL";
+
+    /** Represents a static string that is default name for a logcat log
+     */
+    public static String TAG = "AddSpoolActivity";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,8 +52,12 @@ public class AddSpoolActivity extends AppCompatActivity {
         setContentView(R.layout.new_spool_entry);
 
     }
-
+    /** Adds a new spool
+     * @param view View view
+     */
     public void addSpool(View view){
+
+        Log.d(TAG, "Begin adding new spool");
 
         Intent replyIntent = new Intent();
         EditText inputName = (EditText) findViewById(R.id.spoolName);
@@ -48,6 +74,7 @@ public class AddSpoolActivity extends AppCompatActivity {
             String spoolName = inputName.getText().toString();
             replyIntent.putExtra(REPLY_NAME, spoolName);
             setResult(RESULT_OK, replyIntent);
+            Log.d(TAG, "Got Spool Name");
         }
 
         if (TextUtils.isEmpty(inputBrand.getText())) {
@@ -56,6 +83,7 @@ public class AddSpoolActivity extends AppCompatActivity {
             String spoolBrand = inputBrand.getText().toString();
             replyIntent.putExtra(REPLY_BRAND, spoolBrand);
             setResult(RESULT_OK, replyIntent);
+            Log.d(TAG, "Got Spool Brand");
         }
 
         if (TextUtils.isEmpty(inputColor.getText())) {
@@ -64,6 +92,7 @@ public class AddSpoolActivity extends AppCompatActivity {
             String spoolColor = inputColor.getText().toString();
             replyIntent.putExtra(REPLY_COLOR, spoolColor);
             setResult(RESULT_OK, replyIntent);
+            Log.d(TAG, "Got Spool Color");
         }
 
         if (TextUtils.isEmpty(inputWeight.getText())) {
@@ -72,58 +101,26 @@ public class AddSpoolActivity extends AppCompatActivity {
             int spoolWeight = Integer.parseInt(inputWeight.getText().toString());
             replyIntent.putExtra(REPLY_WEIGHT, spoolWeight);
             setResult(RESULT_OK, replyIntent);
+            Log.d(TAG, "Got Spool Weight");
         }
 
-            //No if-else because it will never be empty
-            String spoolMaterial = inputMaterial.getSelectedItem().toString();
-            replyIntent.putExtra(REPLY_MATERIAL, spoolMaterial);
-            setResult(RESULT_OK, replyIntent);
-
-
-            //Context context = getApplicationContext();
-            //Toast.makeText(context, "Added Spool" + spoolMaterial, Toast.LENGTH_SHORT).show();
-
-            finish();
-
-
-
-        /*
-        Spool spool = new Spool() ;
-
-        EditText inputName = (EditText) findViewById(R.id.spoolName);
-        EditText inputBrand = (EditText) findViewById(R.id.spoolBrand);
-        EditText inputColor = (EditText) findViewById(R.id.spoolColor);
-        EditText inputWeight = (EditText) findViewById(R.id.spoolWeight);
-        Spinner inputMaterial = (Spinner) findViewById(R.id.spoolMaterialSpinner);
-
-        String spoolName = inputName.getText().toString();
-        String spoolBrand = inputBrand.getText().toString();
-        String spoolColor = inputColor.getText().toString();
-        int spoolWeight = Integer.parseInt(inputWeight.getText().toString());
+        //No if-else because it will never be empty
         String spoolMaterial = inputMaterial.getSelectedItem().toString();
-
-        spool.setSpoolName(spoolName);
-        spool.setSpoolBrand(spoolBrand);
-        spool.setSpoolColor(spoolColor);
-        spool.setSpoolWeight(spoolWeight);
-        spool.setSpoolMaterial(spoolMaterial);
-
-
-        Log.d(getClass().getName(), String.format("Received intent with %s", spool.getSpoolName()));
-        //Follow this template
-
-        Toast.makeText(this, "Success! " + spool.getSpoolName()+ " by " + spool.getSpoolBrand() + "added", Toast.LENGTH_SHORT).show();
-
-        Intent replyIntent = new Intent();
-
-        */
+        replyIntent.putExtra(REPLY_MATERIAL, spoolMaterial);
+        setResult(RESULT_OK, replyIntent);
+        Log.d(TAG, "Got Spool Material");
 
 
 
-        //finish();
+        Log.d(TAG, "Finished adding new spool");
+        finish();
+
     }
 
-    // Overrides the Android back button to ensure it goes back to the main activity when pressed
+    /** Returns to MainActivity on Back button press
+     * @author Aiden
+     * @since 1.0
+     */
     @Override
     public void onBackPressed() {
         Intent intent = new Intent(getApplicationContext(), MainActivity.class);

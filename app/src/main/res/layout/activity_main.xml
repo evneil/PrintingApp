@@ -72,6 +72,8 @@
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textViewName"
-        tools:listitem="@layout/recyclerview_item" />
+        tools:listitem="@layout/recyclerview_item"
+        android:clipToPadding="false"
+        android:overScrollMode="never"/>
 
 </android.support.constraint.ConstraintLayout>

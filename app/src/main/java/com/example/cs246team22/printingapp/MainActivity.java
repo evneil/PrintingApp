@@ -7,6 +7,10 @@ import android.arch.lifecycle.ViewModelProviders;
 
 
 import android.content.Intent;
+import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.Paint;
+import android.graphics.RectF;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
@@ -36,6 +40,7 @@ public class MainActivity extends AppCompatActivity {
 
     private SpoolViewModel mSpoolViewModel;
     FirebaseFirestore db = FirebaseFirestore.getInstance();
+    SwipeController swipeController = null;
 
     public static String TAG = "MainActivity";
 
@@ -69,57 +74,44 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
+        swipeController = new SwipeController(new SwipeControllerActions() {
+            @Override
+            public void onRightClicked(int position) {
+                Spool mySpool = adapter.getSpoolAtPosition(position);
+                String cID = Integer.toString(mySpool.getSpoolID());
+                db.collection("spools").document(cID)
+                        .delete()
+                        .addOnSuccessListener(new OnSuccessListener<Void>() {
+                            @Override
+                            public void onSuccess(Void aVoid) {
+                                Log.d(TAG, "DocumentSnapshot successfully deleted!");
+                            }
+                        })
+                        .addOnFailureListener(new OnFailureListener() {
+                            @Override
+                            public void onFailure(@NonNull Exception e) {
+                                Log.w(TAG, "Error deleting document", e);
+                            }
+                        });
+                mSpoolViewModel.deleteSpool(mySpool);
+                setID();
+            }
+        });
 
+        ItemTouchHelper itemTouchhelper = new ItemTouchHelper(swipeController);
+        itemTouchhelper.attachToRecyclerView(recyclerView);
+
+        recyclerView.addItemDecoration(new RecyclerView.ItemDecoration() {
+            @Override
+            public void onDraw(Canvas c, RecyclerView parent, RecyclerView.State state) {
+                swipeController.onDraw(c);
+            }
+        });
 
 
         // Add the functionality to swipe items in the
         // recycler view to delete that item
         //This I intend to remove and just use the delete button located in the listadapter
-
-
-        ItemTouchHelper helper = new ItemTouchHelper(
-                new ItemTouchHelper.SimpleCallback(0,
-                        ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT) {
-
-
-                    @Override
-                    public boolean onMove(@NonNull RecyclerView recyclerView,
-                                          @NonNull RecyclerView.ViewHolder viewHolder,
-                                          @NonNull RecyclerView.ViewHolder target) {
-                        return false;
-                    }
-
-                    @Override
-                    public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder,
-                                         int direction) {
-
-
-                        int position = viewHolder.getAdapterPosition();
-                        Spool mySpool = adapter.getSpoolAtPosition(position);
-                        Toast.makeText(MainActivity.this, "Deleting spool with ID " +
-                                mySpool.getSpoolID(), Toast.LENGTH_LONG).show();
-                        String cID = Integer.toString(mySpool.getSpoolID());
-                        db.collection("spools").document(cID)
-                                .delete()
-                                .addOnSuccessListener(new OnSuccessListener<Void>() {
-                                    @Override
-                                    public void onSuccess(Void aVoid) {
-                                        Log.d(TAG, "DocumentSnapshot successfully deleted!");
-                                    }
-                                })
-                                .addOnFailureListener(new OnFailureListener() {
-                                    @Override
-                                    public void onFailure(@NonNull Exception e) {
-                                        Log.w(TAG, "Error deleting document", e);
-                                    }
-                                });
-
-                        // Delete the spool
-                        mSpoolViewModel.deleteSpool(mySpool);
-                        setID();
-                    }
-                });
-        helper.attachToRecyclerView(recyclerView);
 
 
         Log.d("test","app created");
