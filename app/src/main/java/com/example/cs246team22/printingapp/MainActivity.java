@@ -8,9 +8,6 @@ import android.arch.lifecycle.ViewModelProviders;
 
 import android.content.Intent;
 import android.graphics.Canvas;
-import android.graphics.Color;
-import android.graphics.Paint;
-import android.graphics.RectF;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
@@ -77,6 +74,27 @@ public class MainActivity extends AppCompatActivity {
         swipeController = new SwipeController(new SwipeControllerActions() {
             @Override
             public void onRightClicked(int position) {
+                Spool mySpool = adapter.getSpoolAtPosition(position);
+                String cID = Integer.toString(mySpool.getSpoolID());
+                db.collection("spools").document(cID)
+                        .delete()
+                        .addOnSuccessListener(new OnSuccessListener<Void>() {
+                            @Override
+                            public void onSuccess(Void aVoid) {
+                                Log.d(TAG, "DocumentSnapshot successfully deleted!");
+                            }
+                        })
+                        .addOnFailureListener(new OnFailureListener() {
+                            @Override
+                            public void onFailure(@NonNull Exception e) {
+                                Log.w(TAG, "Error deleting document", e);
+                            }
+                        });
+                mSpoolViewModel.deleteSpool(mySpool);
+                setID();
+            }
+
+            public void onLeftClicked(int position) {
                 Spool mySpool = adapter.getSpoolAtPosition(position);
                 String cID = Integer.toString(mySpool.getSpoolID());
                 db.collection("spools").document(cID)
