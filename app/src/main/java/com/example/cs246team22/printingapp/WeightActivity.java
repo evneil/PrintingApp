@@ -39,7 +39,7 @@ public class WeightActivity extends AppCompatActivity {
             reply.putExtra(NEW_WEIGHT, numWeight);
             setResult(RESULT_OK, reply);
 
-            Log.d("test", "finished collecting weight");
+            Log.d("test", "Finished collecting weight");
 
             finish();
         }
