@@ -6,6 +6,22 @@
     android:layout_height="match_parent"
     tools:context=".WeightActivity">
 
+    <TextView
+        android:id="@+id/textView5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="168dp"
+        android:layout_marginEnd="8dp"
+        android:text="g"
+        android:textColor="@color/colorPrimaryDark"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/weightCost"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <EditText
         android:id="@+id/spoolID"
         android:layout_width="wrap_content"
@@ -48,11 +64,11 @@
 
     <TextView
         android:id="@+id/textView4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
+        android:layout_width="322dp"
+        android:layout_height="69dp"
+        android:layout_marginStart="24dp"
         android:layout_marginTop="16dp"
-        android:layout_marginEnd="16dp"
+        android:layout_marginEnd="24dp"
         android:text="Please enter the spool ID for the spool you wish to change and the new weight of the spool:"
         android:textAlignment="center"
         android:textColor="@color/colorPrimaryDark"
