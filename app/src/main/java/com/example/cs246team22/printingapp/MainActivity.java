@@ -38,12 +38,14 @@ public class MainActivity extends AppCompatActivity {
     private SpoolViewModel mSpoolViewModel;
     FirebaseFirestore db = FirebaseFirestore.getInstance();
     SwipeController swipeController = null;
+    public User user;
 
     public static String TAG = "MainActivity";
 
     public static final int NEW_SPOOL_ACTIVITY_REQUEST_CODE = 1;
     public static final int PRINT_JOB_ACTIVITY_REQUEST_CODE = 2;
     public static final int WEIGHT_ACTIVITY_REQUEST_CODE = 3;
+    public static final int AUTH_ACTUVITY_REQUEST_CODE =  4;
     public static int SPOOL_ID = 0;
 
     @Override
@@ -157,6 +159,11 @@ public class MainActivity extends AppCompatActivity {
         Log.d("test","weight clicked");
     }
 
+    public void onAuth(View view) {
+        Intent intent = new Intent(this, Authentication.class);
+        startActivityForResult(intent, AUTH_ACTUVITY_REQUEST_CODE);
+        Log.d("test", "auth process started");
+    }
 
     public void StartAddSpool(View view){
 
@@ -167,16 +174,16 @@ public class MainActivity extends AppCompatActivity {
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        String tName = data.getStringExtra(AddSpoolActivity.REPLY_NAME);
-        String tBrand =data.getStringExtra(AddSpoolActivity.REPLY_BRAND);
-        String tColor =data.getStringExtra(AddSpoolActivity.REPLY_COLOR);
-        int    tWeight = data.getIntExtra(AddSpoolActivity.REPLY_WEIGHT, 0);
-        String tMaterial =data.getStringExtra(AddSpoolActivity.REPLY_MATERIAL);
+        String tName     = data.getStringExtra(AddSpoolActivity.REPLY_NAME);
+        String tBrand    = data.getStringExtra(AddSpoolActivity.REPLY_BRAND);
+        String tColor    = data.getStringExtra(AddSpoolActivity.REPLY_COLOR);
+        int    tWeight   = data.getIntExtra(AddSpoolActivity.REPLY_WEIGHT, 0);
+        String tMaterial = data.getStringExtra(AddSpoolActivity.REPLY_MATERIAL);
 
-        int numID = data.getIntExtra(WeightActivity.SPOOL_ID, 0);
-        int numWeight = data.getIntExtra(WeightActivity.NEW_WEIGHT, 0);
-        int numIDp = data.getIntExtra(PrintJobActivity.SPOOL_ID_PRINT, 0);
-        int numWeightp = data.getIntExtra(PrintJobActivity.NEW_WEIGHT_PRINT, 0);
+        int numID        = data.getIntExtra(WeightActivity.SPOOL_ID, 0);
+        int numWeight    = data.getIntExtra(WeightActivity.NEW_WEIGHT, 0);
+        int numIDp       = data.getIntExtra(PrintJobActivity.SPOOL_ID_PRINT, 0);
+        int numWeightp   = data.getIntExtra(PrintJobActivity.NEW_WEIGHT_PRINT, 0);
 
         if (requestCode == NEW_SPOOL_ACTIVITY_REQUEST_CODE && resultCode == RESULT_OK) {
             Spool spool = new Spool(SPOOL_ID, tName, tBrand, tColor, tWeight, tMaterial);
@@ -234,12 +241,57 @@ public class MainActivity extends AppCompatActivity {
             Log.d("test","print job -> " + spoolData);
 
         }
+        else if (requestCode == AUTH_ACTUVITY_REQUEST_CODE) {
+
+            Log.d("test", "why does it not like that");
+
+            String name  = data.getStringExtra(Authentication.AUTH_NAME);
+            String email = data.getStringExtra(Authentication.AUTH_EMAIL);
+            String pass  = data.getStringExtra(Authentication.AUTH_PASS);
+
+            Log.d("test", name);
+            Log.d("test", email);
+            Log.d("test", pass);
+
+            Log.d("test", Auth.hash(pass));
+
+
+
+            Auth auth = new Auth(this);
+
+            Log.d("test", "auth made");
+
+            auth.makeAccount(email, name, pass);
+
+            Log.d("test", "account made");
+
+            String identification;
+            if (!email.isEmpty())
+                identification = email;
+            else
+                identification = name;
+
+            Log.d("test", "id gotten");
+
+            this.user = auth.getAccount(identification, pass);
+
+            Log.d("test", "user retrieved");
+
+            //Log.d("test", "" + this.user);
+
+            //can add something in the other functions that makes it so that
+            //you can't update the lists if you aren't logged in or something
+            //but that seems a little contrived
+
+        }
         else {
             Toast.makeText(
                     getApplicationContext(),
                     "One or more fields empty, not saved",
                     Toast.LENGTH_LONG).show();
         }
+
+
 
     }
 

@@ -33,8 +33,6 @@ public class WeightActivity extends AppCompatActivity {
             int numID = Integer.parseInt(id.getText().toString());
             int numWeight = Integer.parseInt(newWeight.getText().toString());
 
-            //add checks to make sure the values are there
-
             reply.putExtra(SPOOL_ID, numID);
             reply.putExtra(NEW_WEIGHT, numWeight);
             setResult(RESULT_OK, reply);

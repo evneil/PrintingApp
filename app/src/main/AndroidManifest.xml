@@ -12,30 +12,37 @@
         <activity
             android:name=".MainActivity"
             android:screenOrientation="portrait">
-
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".AddSpoolActivity"
+        <activity
+            android:name=".AddSpoolActivity"
+            android:label="New Spool"
             android:parentActivityName=".MainActivity"
-            android:screenOrientation="portrait"
-            android:label="New Spool"/>
-        <activity android:name=".PrintJobActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".PrintJobActivity"
+            android:label="New Print Job"
             android:parentActivityName=".MainActivity"
-            android:screenOrientation="portrait"
-            android:label="New Print Job"/>
-        <activity android:name=".WeightActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Authentication"
+            android:label="Authenticate User"
             android:parentActivityName=".MainActivity"
-            android:screenOrientation="portrait"
-            android:label="New Spool Weight">
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".WeightActivity"
+            android:label="New Spool Weight"
+            android:parentActivityName=".MainActivity"
+            android:screenOrientation="portrait">
+
             <!-- The meta-data tag is required if you support API level 15 and lower -->
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".MainActivity" />
-
         </activity>
     </application>
 
