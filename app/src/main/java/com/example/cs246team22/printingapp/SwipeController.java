@@ -154,11 +154,11 @@ class SwipeController extends Callback {
         View itemView = viewHolder.itemView;
         Paint p = new Paint();
 
-        //Draw Edit button on the left
+        //Draw Delete button on the left
         RectF leftButton = new RectF(itemView.getLeft(), itemView.getTop(), itemView.getLeft() + buttonWidthWithoutPadding, itemView.getBottom());
-        p.setColor(Color.GREEN);
+        p.setColor(Color.RED);
         c.drawRoundRect(leftButton, corners, corners, p);
-        drawText("EDIT", c, leftButton, p);
+        drawText("Delete", c, leftButton, p);
         //Draws Delete Button on the right
         RectF rightButton = new RectF(itemView.getRight() - buttonWidthWithoutPadding, itemView.getTop(), itemView.getRight(), itemView.getBottom());
         p.setColor(Color.RED);
