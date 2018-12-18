@@ -9,6 +9,14 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
+/**
+ * Weight refers to the weight if the spool as you see on a measuring scale. This should be
+ * used to set the weight of the spool rather than changing it from it's current value.
+ *
+ * @author Aiden
+ * @version 1.0
+ * @since 12/17/18
+ */
 public class WeightActivity extends AppCompatActivity {
 
     public static final String SPOOL_ID = "com.example.cs246team22.printingapp.SPOOL_ID";

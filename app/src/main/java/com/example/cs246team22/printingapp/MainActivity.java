@@ -18,6 +18,7 @@ import android.support.v7.widget.helper.ItemTouchHelper;
 import android.util.Log;
 import android.view.View;
 
+import android.widget.TextView;
 import android.widget.Toast;
 
 
@@ -44,7 +45,10 @@ public class MainActivity extends AppCompatActivity {
     public static final int NEW_SPOOL_ACTIVITY_REQUEST_CODE = 1;
     public static final int PRINT_JOB_ACTIVITY_REQUEST_CODE = 2;
     public static final int WEIGHT_ACTIVITY_REQUEST_CODE = 3;
+    public static final int AUTH_ACTUVITY_REQUEST_CODE =  4;
     public static int SPOOL_ID = 0;
+
+    private User user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -158,7 +162,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void onAuth(View view) {
-
+        Intent intent = new Intent(this, Authentication.class);
+        startActivityForResult(intent, AUTH_ACTUVITY_REQUEST_CODE);
         Log.d("test", "auth process started");
     }
 
@@ -236,6 +241,42 @@ public class MainActivity extends AppCompatActivity {
             }
 
             Log.d("test","print job -> " + spoolData);
+
+        }
+        else if (requestCode == AUTH_ACTUVITY_REQUEST_CODE) {
+
+            Log.d("test", "Authentication data recieved, checking now");
+
+            String name  = data.getStringExtra(Authentication.AUTH_NAME);
+            String email = data.getStringExtra(Authentication.AUTH_EMAIL);
+            String pass  = data.getStringExtra(Authentication.AUTH_PASS);
+
+            Auth auth = new Auth(this);
+
+            if (name.equals("nothing")) {
+                auth.deleteUser();
+                Log.d("test", "deleted user");
+                TextView tv = (TextView) findViewById(R.id.authText);
+                tv.setText("");
+            }
+            else {
+
+                auth.makeAccount(email, name, pass);
+
+                String identification;
+                if (!email.isEmpty())
+                    identification = email;
+                else
+                    identification = name;
+
+                User user = auth.getAccount(identification, pass);
+                if (user != null) {
+                    this.user = user;
+                    Log.d("test", "" + this.user.userToString());
+                    TextView tv = (TextView) findViewById(R.id.authText);
+                    tv.setText(user.getName());
+                }
+            }
 
         }
         else {
