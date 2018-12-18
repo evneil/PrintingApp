@@ -29,11 +29,6 @@
             android:parentActivityName=".MainActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".Authentication"
-            android:label="Authenticate User"
-            android:parentActivityName=".MainActivity"
-            android:screenOrientation="portrait" />
-        <activity
             android:name=".WeightActivity"
             android:label="New Spool Weight"
             android:parentActivityName=".MainActivity"
