@@ -9,6 +9,15 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
+/**
+ * PrintJob refers to the weight that would be used up by completing a print job on
+ * the 3d printer. These are usually obtained from the program used to make the model.
+ * This class will subtract the weight from the current weight rather than setting it outright
+ *
+ * @author Aiden
+ * @version 1.0
+ * @since 12/17/18
+ */
 public class PrintJobActivity extends AppCompatActivity {
 
     public static final String SPOOL_ID_PRINT = "com.example.cs246team22.printingapp.SPOOL_ID_PRINT";
