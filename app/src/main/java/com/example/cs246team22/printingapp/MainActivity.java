@@ -150,12 +150,14 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void printJob(View view) {
+        setID();
         Intent intent = new Intent(this, PrintJobActivity.class);
         startActivityForResult(intent, PRINT_JOB_ACTIVITY_REQUEST_CODE );
         Log.d("test","print clicked");
     }
 
     public void onWeight(View view) {
+        setID();
         Intent intent = new Intent(this, WeightActivity.class);
         startActivityForResult(intent, WEIGHT_ACTIVITY_REQUEST_CODE );
         Log.d("test","weight clicked");
@@ -168,7 +170,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void StartAddSpool(View view){
-
+        setID();
         Intent AddSpoolActivityIntent = new Intent(this, AddSpoolActivity.class);
         startActivityForResult(AddSpoolActivityIntent, NEW_SPOOL_ACTIVITY_REQUEST_CODE);
     }
