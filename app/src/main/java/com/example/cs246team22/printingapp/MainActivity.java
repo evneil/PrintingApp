@@ -149,21 +149,37 @@ public class MainActivity extends AppCompatActivity {
         super.onDestroy();
     }
 
-    public void printJob(View view) {
+    @Override
+    protected void onPause() {
+        super.onPause();
         setID();
+        syncCloud();
+
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        setID();
+        syncCloud();
+    }
+
+    public void printJob(View view) {
+        syncCloud();
         Intent intent = new Intent(this, PrintJobActivity.class);
         startActivityForResult(intent, PRINT_JOB_ACTIVITY_REQUEST_CODE );
         Log.d("test","print clicked");
     }
 
     public void onWeight(View view) {
-        setID();
+        syncCloud();
         Intent intent = new Intent(this, WeightActivity.class);
         startActivityForResult(intent, WEIGHT_ACTIVITY_REQUEST_CODE );
         Log.d("test","weight clicked");
     }
 
     public void onAuth(View view) {
+        syncCloud();
         Intent intent = new Intent(this, Authentication.class);
         startActivityForResult(intent, AUTH_ACTUVITY_REQUEST_CODE);
         Log.d("test", "auth process started");
@@ -171,6 +187,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void StartAddSpool(View view){
         setID();
+        syncCloud();
         Intent AddSpoolActivityIntent = new Intent(this, AddSpoolActivity.class);
         startActivityForResult(AddSpoolActivityIntent, NEW_SPOOL_ACTIVITY_REQUEST_CODE);
     }
@@ -302,7 +319,7 @@ public class MainActivity extends AppCompatActivity {
                             for (QueryDocumentSnapshot document : task.getResult()) {
                                 Log.d(TAG, document.getId() + " => " + document.getData());
                                 int tID = Integer.parseInt(document.getId());
-                                SPOOL_ID = tID +1;
+                                SPOOL_ID = tID + 1;
                             }
                         } else {
                             Log.w(TAG, "Error getting documents.", task.getException());
